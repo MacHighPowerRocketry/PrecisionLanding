@@ -23,7 +23,7 @@ class rocketLogger:
         handler = logging.FileHandler(log_file)        
         handler.setFormatter(formatter)
 
-        logger = logging.getLogger(name)
+        logger = logging.getLogger("logs//" + name)
         logger.setLevel(level)
         logger.addHandler(handler)
 

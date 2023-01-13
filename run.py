@@ -1,4 +1,4 @@
-import sensor
+from Sensors import sensor
 import berryAccelerometer
 import rocketLogger
 

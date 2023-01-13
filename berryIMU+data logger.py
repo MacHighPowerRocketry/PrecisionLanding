@@ -82,7 +82,7 @@ logger = rocketLogger()
 logger.dataLog('AccXangle \t AccYangle \t gyroXangle \t gyroYangle \t gyroZangle  \n')
 
 
-while True and current_time <= total_time:
+while current_time <= total_time:
     #Read the accelerometer,gyroscope and magnetometer values
     ACCx = IMU.readACCx()
     ACCy = IMU.readACCy()

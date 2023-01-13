@@ -1,1 +1,29 @@
 
+class sensor:
+
+    def __init__(self):
+        pass
+
+    def applySensorReadLogic(self):
+        """
+        Sensor logic defined to retrieve and calibrate raw sensor data, to be called once per logic iteration
+        """
+        pass
+
+    def getRawSensorData(self):
+        """
+        Returns raw sensor data in format relevent to particular sensor implementation
+        """
+        return data
+
+    def applyCalibration(self, data);
+        #some code to calibrate data here
+        pass
+
+    def convertDataToDeg(self, value):
+        #some code to convert data
+        return value
+
+    def getSensorData(self):
+        #gets finalized sensor data, likel to used in logging and logic
+        pass

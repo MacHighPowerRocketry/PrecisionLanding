@@ -33,7 +33,3 @@ class sensor:
     def convertDataToDeg(self, value):
         #some code to convert data
         return value
-
-    def getSensorData(self):
-        #gets finalized sensor data, like to used in logging and logic
-        pass

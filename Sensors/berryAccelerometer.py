@@ -22,6 +22,7 @@ class berryAccelerometer(sensor):
         calibratedSensorData = applyCalibration(convertedSensorData)
         self.callibratedAccYangle = calibratedSensorData[1]
         self.callibratedAccXangle = calibratedSensorData[0]
+        self.normalizeData()
     
     def getSensorData(self):
         #returns finalized sensor data for use outside class

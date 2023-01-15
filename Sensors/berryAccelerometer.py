@@ -68,3 +68,9 @@ class berryAccelerometer(sensor):
 
     def getNormalizedData(self):
         return [self.accXnorm, self.accYnorm]
+
+    def getPitch(self):
+        return math.asin(self.accXnorm)
+
+    def getRoll(self):
+        return -math.asin(accYnorm/math.cos(self.getPitch))

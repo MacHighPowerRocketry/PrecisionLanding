@@ -13,3 +13,9 @@ Log sensor and debug data to file, in /logs
 
 run.py
 Controller class, grabs sensor data from sensor.py, sends to both datalogger.py (to log to file) and to an algogrythm to determine servo action, which sends data to servo.py
+
+Setup:
+
+1. Clone the repo both on your local machine and the rocket's raspberry pi. 
+2. On the raspberry pi, enable SSH and GPIO On the raspberry pi.
+3. run Autorun/setup_autorunner.sh to allow the code to run on boot

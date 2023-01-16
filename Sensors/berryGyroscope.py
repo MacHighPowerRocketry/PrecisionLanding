@@ -8,7 +8,7 @@ import os
 import sys
 
 G_GAIN = 0.070  # [deg/s/LSB]  If you change the dps for gyro, you need to update this value accordingly
-
+AA =  0.40
 
 class berryGyroscope(sensor):
 
@@ -18,6 +18,8 @@ class berryGyroscope(sensor):
         self.gyroXangle = 0.0
         self.gyroYangle = 0.0
         self.gyroZangle = 0.0
+        self.CFangleX = 0.0
+        self.CFangleY = 0.0
 
     def applySensorReadLogic(self):
         """
@@ -48,7 +50,9 @@ class berryGyroscope(sensor):
         self.timeA = datetime.datetime.now()
         self.LP = self.timeB.microseconds/(1000000*1.0)
         
-
+    def applyFilter(self, gyroxy, loopPeriod, accxy)
+        self.CFangleX=AA*(self.CFangleX+gyroxy[0]*LP) +(1 - AA) * accxy[0]
+        self.CFangleY=AA*(self.CFangleY+gyroxy[1]*LP) +(1 - AA) * accxy[1]
 
     def applyCalibration(self, data);
         #Apply calibration to generate finalized gyro angle data

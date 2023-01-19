@@ -1,5 +1,6 @@
 from BerryIMU import IMU
 import rocketLogger
+import logging
 
 class sensor:
 
@@ -7,7 +8,7 @@ class sensor:
         logger = rocketLogger()
         IMU.detectIMU()     #Detect if BerryIMU is connected.
         if(IMU.BerryIMUversion == 99):
-            logger.debugLog(level=logging.WARNING, "No IMU detected!")
+            logger.debugLog("No IMU detected!", level=logging.WARNING)
         IMU.initIMU() 
 
     def getSensorData(self):
@@ -24,7 +25,7 @@ class sensor:
         """
         Returns raw sensor data in format relevent to particular sensor implementation
         """
-        return data
+        pass
 
     def applyCalibration(self, data);
         #some code to calibrate data here

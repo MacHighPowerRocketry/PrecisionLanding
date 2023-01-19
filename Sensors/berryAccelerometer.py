@@ -17,12 +17,13 @@ class berryAccelerometer(sensor):
         sensor.__init__(self)
 
     def applySensorReadLogic(self):
-        rawSensorData = getRawSensorData()
-        convertedSensorData = convertDataToDeg(rawSensorData)
-        calibratedSensorData = applyCalibration(convertedSensorData)
+        rawSensorData = self.getRawSensorData()
+        convertedSensorData = self.convertDataToDeg(rawSensorData)
+        calibratedSensorData =  self.applyCalibration(convertedSensorData)
         self.callibratedAccYangle = calibratedSensorData[1]
         self.callibratedAccXangle = calibratedSensorData[0]
-        self.normalizeData()
+        data = [self.callibratedAccXangle, self.callibratedAccYangle]
+        self.normalizeData(data)
     
     def getSensorData(self):
         #returns finalized sensor data for use outside class
@@ -62,7 +63,11 @@ class berryAccelerometer(sensor):
         convertedSensorData = [AccXangle, AccYangle]
         return convertedSensorData
 
-    def normalizeData(self):
+    
+    def normalizeData(self,data):
+        ACCx = data[0]
+        ACCy = data[1]
+        ACCz = IMU.readACCz()
         self.accXnorm = ACCx/math.sqrt(ACCx * ACCx + ACCy * ACCy + ACCz * ACCz)
         self.accYnorm = ACCy/math.sqrt(ACCx * ACCx + ACCy * ACCy + ACCz * ACCz)
 
@@ -73,4 +78,4 @@ class berryAccelerometer(sensor):
         return math.asin(self.accXnorm)
 
     def getRoll(self):
-        return -math.asin(accYnorm/math.cos(self.getPitch))
+        return -math.asin(self.accYnorm/math.cos(self.getPitch))

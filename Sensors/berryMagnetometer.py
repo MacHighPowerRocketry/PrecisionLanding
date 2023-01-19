@@ -29,10 +29,10 @@ class berryMagnetometer(sensor):
         """
         Sensor logic defined to retrieve and calibrate raw sensor data, to be called once per logic iteration
         """
-        rawSensorData = getRawSensorData()
-        calibratedSensorData = applyCalibration(rawSensorData)
-        compensatedTiltValues = calculateTiltCompensatedValues(calibratedSensorData)
-        self.heading = calculateTiltCompensatedHeading(compensatedTiltValues)
+        rawSensorData = self.getRawSensorData()
+        calibratedSensorData = self.applyCalibration(rawSensorData)
+        compensatedTiltValues = self.calculateTiltCompensatedValues(calibratedSensorData)
+        self.heading = self.calculateTiltCompensatedHeading(compensatedTiltValues)
 
         
     def getSensorData(self):
@@ -40,7 +40,7 @@ class berryMagnetometer(sensor):
         return self.heading
 
 
-    def calculateTiltCompensatedHeading(self, data)
+    def calculateTiltCompensatedHeading(self, data):
         tiltCompensatedHeading = 180 * math.atan2(data[1],data[0])/M_PI
         if tiltCompensatedHeading < 0:
             tiltCompensatedHeading += 360
@@ -65,7 +65,7 @@ class berryMagnetometer(sensor):
         MAGz = IMU.readMAGz()
         return [MAGx, MAGy, MAGz]
 
-    def applyCalibration(self, data);
+    def applyCalibration(self, data):
         mag = data
         mag[0] -= (self.magXmin + self.magXmax) /2
         mag[1] -= (self.magYmin + self.magYmax) /2

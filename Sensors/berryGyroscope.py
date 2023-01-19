@@ -25,10 +25,10 @@ class berryGyroscope(sensor):
         """
         Sensor logic defined to retrieve and calibrate raw sensor data, to be called once per logic iteration
         """
-        rawSensorData = getRawSensorData()
-        calculateLP()
-        convertedSensorData = convertDataToDeg(rawSensorData)
-        applyCalibration(convertedSensorData)
+        rawSensorData = self.getRawSensorData()
+        self.calculateLP()
+        convertedSensorData = self.convertDataToDeg(rawSensorData)
+        self.applyCalibration(convertedSensorData)
 
 
     def getRawSensorData(self):
@@ -50,9 +50,9 @@ class berryGyroscope(sensor):
         self.timeA = datetime.datetime.now()
         self.LP = self.timeB.microseconds/(1000000*1.0)
         
-    def applyFilter(self, gyroxy, loopPeriod, accxy)
-        self.CFangleX=AA*(self.CFangleX+gyroxy[0]*LP) +(1 - AA) * accxy[0]
-        self.CFangleY=AA*(self.CFangleY+gyroxy[1]*LP) +(1 - AA) * accxy[1]
+    def applyFilter(self, gyroxy, loopPeriod, accxy):
+        self.CFangleX=AA*(self.CFangleX+gyroxy[0]*self.LP) +(1 - AA) * accxy[0]
+        self.CFangleY=AA*(self.CFangleY+gyroxy[1]*self.LP) +(1 - AA) * accxy[1]
 
     def applyCalibration(self, data);
         #Apply calibration to generate finalized gyro angle data

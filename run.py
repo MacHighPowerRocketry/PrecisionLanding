@@ -1,12 +1,12 @@
 from Sensors import sensor
-import berryAccelerometer
+from Sensors import berryAccelerometer
 import rocketLogger
 
 logger = rocketLogger()
 logger.dataLog('AccXangle \t AccYangle \t gyroXangle \t gyroYangle \t gyroZangle  \n')
 
 
-def manageSensors()
+def manageSensors():
     callSensorLogics()
     logSensorData()
 
@@ -21,9 +21,8 @@ def logSensorData():
     
 
 def main():
-    initalizeLogger()
     while True:
         manageSensors()
 
 if __name__=="__main__":
-    main()
+    main()

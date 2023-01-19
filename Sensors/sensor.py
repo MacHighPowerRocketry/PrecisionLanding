@@ -27,7 +27,7 @@ class sensor:
         """
         pass
 
-    def applyCalibration(self, data);
+    def applyCalibration(self, data):
         #some code to calibrate data here
         pass
 

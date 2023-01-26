@@ -1,4 +1,4 @@
-import sensor
+from Sensors.sensor import sensor
 import time
 import math
 from BerryIMU import IMU
@@ -11,8 +11,8 @@ M_PI = 3.14159265358979323846
 
 class berryMagnetometer(sensor):
     
-    def __init__(self):
-        sensor.__init__(self)
+    def __init__(self, logger):
+        sensor.__init__(self, logger)
 
         ################# Compass Calibration values ############
         # Use calibrateBerryIMU.py to get calibration values
@@ -25,13 +25,13 @@ class berryMagnetometer(sensor):
         self.magYmax =  0
         self.magZmax =  0
 
-    def applySensorReadLogic(self):
+    def applySensorReadLogic(self, pitch, roll):
         """
         Sensor logic defined to retrieve and calibrate raw sensor data, to be called once per logic iteration
         """
         rawSensorData = self.getRawSensorData()
         calibratedSensorData = self.applyCalibration(rawSensorData)
-        compensatedTiltValues = self.calculateTiltCompensatedValues(calibratedSensorData)
+        compensatedTiltValues = self.calculateTiltCompensatedValues(calibratedSensorData, pitch, roll)
         self.heading = self.calculateTiltCompensatedHeading(compensatedTiltValues)
 
         

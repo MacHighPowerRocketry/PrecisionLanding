@@ -1,4 +1,4 @@
-import sensor
+from Sensors.sensor import sensor
 
 import time
 import math
@@ -13,8 +13,8 @@ M_PI = 3.14159265358979323846
 
 class berryAccelerometer(sensor):
 
-    def __init__(self):
-        sensor.__init__(self)
+    def __init__(self,logger):
+        sensor.__init__(self,logger)
 
     def applySensorReadLogic(self):
         rawSensorData = self.getRawSensorData()
@@ -27,7 +27,7 @@ class berryAccelerometer(sensor):
     
     def getSensorData(self):
         #returns finalized sensor data for use outside class
-        return [self.callibratedAccYangle. self.callibratedAccXangle]
+        return [self.callibratedAccYangle, self.callibratedAccXangle]
 
     def getRawSensorData(self):
         """
@@ -78,4 +78,4 @@ class berryAccelerometer(sensor):
         return math.asin(self.accXnorm)
 
     def getRoll(self):
-        return -math.asin(self.accYnorm/math.cos(self.getPitch))
+        return -math.asin(self.accYnorm/math.cos(self.getPitch()))

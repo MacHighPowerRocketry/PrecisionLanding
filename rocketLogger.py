@@ -15,12 +15,11 @@ import logging
 class rocketLogger:
     def __init__(self):
         self.formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
-        self.dataLogger = self.setup_logger('data_logger', 'data.log', logging.INFO)
-        self.debugLogger = self.setup_logger('debug_logger', 'debug.log')
-
+        self.dataLogger = self.setup_logger('data_logger', 'logs/data.log', logging.INFO)
+        self.debugLogger = self.setup_logger('debug_logger', 'logs/debug.log')
 
     def setup_logger(self, name, log_file, level=logging.WARNING):
-        handler = logging.FileHandler(log_file)        
+        handler = logging.FileHandler(log_file)
         handler.setFormatter(self.formatter)
 
         logger = logging.getLogger("logs//" + name)
@@ -31,9 +30,9 @@ class rocketLogger:
 
     def dataLog(self,data_to_log):
         #Data log should probably always be info level
-        self.dataLoggger.info(data_to_log)
+        self.dataLogger.info(data_to_log)
     
-    def debugLog(self, debug_to_log, level=logging.WARNING)
+    def debugLog(self, debug_to_log, level=logging.WARNING):
         self.debugLogger.log(level, debug_to_log)
 
 

@@ -4,8 +4,8 @@ import logging
 
 class sensor:
 
-    def __init__(self):
-        logger = rocketLogger()
+    def __init__(self, logger):
+        #logger = rocketLogger()
         IMU.detectIMU()     #Detect if BerryIMU is connected.
         if(IMU.BerryIMUversion == 99):
             logger.debugLog("No IMU detected!", level=logging.WARNING)

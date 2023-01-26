@@ -1,10 +1,14 @@
 from Sensors import sensor
-from Sensors import berryAccelerometer
+from Sensors.berryAccelerometer import *
+from Sensors.berryGyroscope import *
+from Sensors.berryMagnetometer import *
 import rocketLogger
 
-logger = rocketLogger()
-logger.dataLog('AccXangle \t AccYangle \t gyroXangle \t gyroYangle \t gyroZangle  \n')
-
+logger = rocketLogger.rocketLogger()
+logger.dataLog('AccXangle \t AccYangle \t gyroXangle \t gyroYangle \t gyroZangle \t heading  \n ')
+accelerometer = berryAccelerometer(logger)
+gyroscope = berryGyroscope(logger)
+magnetometer = berryMagnetometer(logger)
 
 def manageSensors():
     callSensorLogics()
@@ -12,12 +16,16 @@ def manageSensors():
 
 def callSensorLogics():
     #add sensor logic calls here
-    berryAccelerometer.applySensorReadLogic()
+    accelerometer.applySensorReadLogic()
+    gyroscope.applySensorReadLogic()
+    magnetometer.applySensorReadLogic(accelerometer.getPitch(), accelerometer.getRoll())
 
 def logSensorData():
-    logger.dataLog(berryAccelerometer.getSensorData()[0] + 
-                " " + berryAccelerometer.getSensorData()[1] + 
-                "/N")
+    logger.dataLog(str(accelerometer.getSensorData()[0]) + 
+                " " + str(accelerometer.getSensorData()[1]) + 
+                " " + str(gyroscope.getSensorData()[0]) +
+                " " + str(gyroscope.getSensorData()[1]) + 
+                " " + str(magnetometer.getSensorData()) + "/n")
     
 
 def main():

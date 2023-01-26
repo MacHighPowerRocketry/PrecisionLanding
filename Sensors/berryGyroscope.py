@@ -1,4 +1,4 @@
-import sensor
+from Sensors.sensor import sensor
 
 import time
 import math
@@ -12,8 +12,8 @@ AA =  0.40
 
 class berryGyroscope(sensor):
 
-    def __init__(self):
-        sensor.__init__(self)
+    def __init__(self, logger):
+        sensor.__init__(self, logger)
         self.timeA = datetime.datetime.now() 
         self.gyroXangle = 0.0
         self.gyroYangle = 0.0
@@ -54,7 +54,7 @@ class berryGyroscope(sensor):
         self.CFangleX=AA*(self.CFangleX+gyroxy[0]*self.LP) +(1 - AA) * accxy[0]
         self.CFangleY=AA*(self.CFangleY+gyroxy[1]*self.LP) +(1 - AA) * accxy[1]
 
-    def applyCalibration(self, data);
+    def applyCalibration(self, data):
         #Apply calibration to generate finalized gyro angle data
         x,y,z = data
         self.gyroXangle+=x*self.LP

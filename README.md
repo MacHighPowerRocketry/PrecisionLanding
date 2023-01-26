@@ -17,5 +17,7 @@ Controller class, grabs sensor data from sensor.py, sends to both datalogger.py 
 Setup:
 
 1. Clone the repo both on your local machine and the rocket's raspberry pi. 
-2. On the raspberry pi, enable SSH and GPIO On the raspberry pi.
-3. run Autorun/setup_autorunner.sh to allow the code to run on boot
+2. Run pip install -r requirements.txt
+3. On the raspberry pi, enable SSH and GPIO On the raspberry pi.
+4. run Autorun/setup_autorunner.sh to allow the code to run on boot
+

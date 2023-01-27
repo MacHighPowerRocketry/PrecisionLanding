@@ -13,30 +13,16 @@ gyroscope = berryGyroscope(logger)
 magnetometer = berryMagnetometer(logger)
 tempPressureAltitudeSensor = BMP388()
 
-def manageSensors():
-    callSensorLogics()
-    logSensorData()
-
-def callSensorLogics():
-    #add sensor logic calls here
-    accelerometer.applySensorReadLogic()
-    gyroscope.applySensorReadLogic()
-    magnetometer.applySensorReadLogic(accelerometer.getPitch(), accelerometer.getRoll())
-    
+sensors = [accelerometer, gyroscope, magnetometer, tempPressureAltitudeSensor]
 
 def logSensorData():
-    temperature,pressure,altitude = bmp388.get_temperature_and_pressure_and_altitude()
-    logger.dataLog(accelerometer.toString() + 
-                gyroscope.toString() + 
-                magnetometer.toString +
-                tempPressureAltitudeSensor.toString()+
-                "/n")
-    
-    
-
+    for sensor in sensors:
+        logger.dataLog(sensor.toString())
+    logger.dataLog("\n")
+ 
 def main():
     while True:
-        manageSensors()
+        logSensorData()
 
 if __name__=="__main__":
     main()

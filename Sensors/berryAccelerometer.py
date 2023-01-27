@@ -27,6 +27,7 @@ class berryAccelerometer(sensor):
     
     def getSensorData(self):
         #returns finalized sensor data for use outside class
+        self.applySensorReadLogic()
         return [self.callibratedAccYangle, self.callibratedAccXangle]
 
     def getRawSensorData(self):
@@ -81,4 +82,5 @@ class berryAccelerometer(sensor):
         return -math.asin(self.accYnorm/math.cos(self.getPitch()))
 
     def toString(self):
-        return "Pitch %s Roll %s Accelerometer X Angle %s Acceleromter Y Angle %s" % (self.getPitch(), self.getRoll, self.callibratedAccXangle, self.callibratedAccYangle)
+        x,y = self.getSensorData()
+        return "Pitch %s Roll %s Accelerometer X Angle %s Acceleromter Y Angle %s" % (self.getPitch(), self.getRoll(), x, y)

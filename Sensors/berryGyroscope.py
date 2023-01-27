@@ -73,4 +73,7 @@ class berryGyroscope(sensor):
     def getSensorData(self):
         return [self.gyroXangle, self.gyroYangle, self.gyroZangle]
 
+    def toString(self):
+        return "Gyroscope X Angle, Gyroscope Y Angle, Gyroscope Z Angle %s "%(self.gyroXangle,self.gyroYangle,self.gyroZangle)
+
 

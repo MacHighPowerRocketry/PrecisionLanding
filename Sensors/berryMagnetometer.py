@@ -72,4 +72,5 @@ class berryMagnetometer(sensor):
         mag[2] -= (self.magZmin + self.magZmax) /2
         return mag
 
-    
+    def toString(self):
+        return "Heading %s "%(self.heading)

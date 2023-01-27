@@ -79,3 +79,6 @@ class berryAccelerometer(sensor):
 
     def getRoll(self):
         return -math.asin(self.accYnorm/math.cos(self.getPitch()))
+
+    def toString(self):
+        return "Pitch %s Roll %s Accelerometer X Angle %s Acceleromter Y Angle %s" % (self.getPitch(), self.getRoll, self.callibratedAccXangle, self.callibratedAccYangle)

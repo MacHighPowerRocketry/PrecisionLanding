@@ -3,6 +3,7 @@ from Sensors.berryAccelerometer import *
 from Sensors.berryGyroscope import *
 from Sensors.berryMagnetometer import *
 from Sensors.pressureSensor import *
+from time import sleep
 import rocketLogger
 
 logger = rocketLogger.rocketLogger()
@@ -22,6 +23,7 @@ def logSensorData():
  
 def main():
     while True:
+        sleep(0.05) #wait 50 miliseconds between data dump
         logSensorData()
 
 if __name__=="__main__":

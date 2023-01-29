@@ -42,7 +42,7 @@ class berryMagnetometer(sensor):
         #returns tilt heading, compensated by calibrated values
         accelerometer = berryAccelerometer(self.logger)
         self.applySensorReadLogic(accelerometer.getPitch, accelerometer.getRoll)
-        return self.heading
+        return [self.heading]
 
 
     def calculateTiltCompensatedHeading(self, data):
@@ -78,4 +78,5 @@ class berryMagnetometer(sensor):
         return mag
 
     def toString(self):
+        heading = self.roundDataValuesToDecimal(self.getSensorData())
         return "Heading %s "%(self.getSensorData())

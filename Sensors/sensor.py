@@ -11,6 +11,12 @@ class sensor:
             logger.debugLog("No IMU detected!", level=logging.WARNING)
         IMU.initIMU() 
 
+    def roundDataValuesToDecimal(self,data, decimal=3):
+        roundedData = data
+        for item in roundedData:
+            item = round(item, decimal)
+        return roundedData
+
     def getSensorData(self):
         #returns finaliozed sensor data
         pass

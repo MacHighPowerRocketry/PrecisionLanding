@@ -5,13 +5,14 @@ import smbus
 import math
 
 from BerryIMU.BMP388 import *
+from Sensors.sensor import sensor
 
-
-class BMP388(object):
+class BMP388(sensor):
 
     """docstring for BMP388"""
 
     def __init__(self, logger, address=I2C_ADD_BMP388):
+        sensor.__init__(logger)
         self._address = address
         self._bus = smbus.SMBus(0x01)
         self.logger = logger
@@ -133,7 +134,8 @@ class BMP388(object):
         return (temperature, pressure, altitude)
     
     def toString(self):
-        return "temperature %s pressure %s altitude %s "%(self.get_temperature_and_pressure_and_altitude())
+        temp, pressure, altitude = self.roundDataValuesToDecimal(self.get_temperature_and_pressure_and_altitude())
+        return "temperature %.1f pressure %.2f altitude %.2f "%(temp /100.0, pressure/100.0, altitude/100.0)
 
 if __name__ == '__main__':
 

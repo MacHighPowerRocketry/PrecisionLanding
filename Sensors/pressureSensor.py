@@ -7,7 +7,7 @@ import math
 from BerryIMU.BMP388 import *
 from Sensors.sensor import sensor
 
-class BMP388(sensor):
+class pressureSensor(sensor):
 
     """docstring for BMP388"""
 
@@ -143,7 +143,7 @@ if __name__ == '__main__':
  
  print("BMP388 Test Program ...\n")
  
- bmp388 = BMP388()
+ bmp388 = pressureSensor()
  
  while True:
   time.sleep(0.5)

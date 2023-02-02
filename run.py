@@ -3,6 +3,7 @@ from Sensors.berryAccelerometer import *
 from Sensors.berryGyroscope import *
 from Sensors.berryMagnetometer import *
 from Sensors.pressureSensor import *
+from Sensors.berryGPS import *
 from time import sleep
 import rocketLogger
 
@@ -13,6 +14,7 @@ accelerometer = berryAccelerometer(logger)
 gyroscope = berryGyroscope(logger)
 magnetometer = berryMagnetometer(logger)
 tempPressureAltitudeSensor = BMP388()
+gps = berryGPS()
 
 sensors = [accelerometer, gyroscope, magnetometer, tempPressureAltitudeSensor]
 

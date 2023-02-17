@@ -10,12 +10,14 @@ Main class would import the rocketLogger class, then call either dataLog(data_to
 """
 
 import logging
-
+from datetime import datetime
 
 class rocketLogger:
     def __init__(self):
+	now = datetime.now()
+	dt_string = now.strftime("%m-%d-%Y %H:%M:%S")
         self.formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
-        self.dataLogger = self.setup_logger('data_logger', 'logs/data.log', logging.INFO)
+        self.dataLogger = self.setup_logger('data_logger', 'logs/data_' + dt_string + '.log', logging.INFO)
         self.debugLogger = self.setup_logger('debug_logger', 'logs/debug.log')
 
     def setup_logger(self, name, log_file, level=logging.WARNING):

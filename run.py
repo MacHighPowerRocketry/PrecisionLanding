@@ -1,25 +1,26 @@
-from Sensors import sensor
-from Sensors.berryAccelerometer import *
-from Sensors.berryGyroscope import *
-from Sensors.berryMagnetometer import *
-from Sensors.pressureSensor import *
+from Sensors import *
 from time import sleep
 import rocketLogger
 
 logger = rocketLogger.rocketLogger()
-logger.dataLog('AccXangle \t AccYangle \t gyroXangle \t gyroYangle \t gyroZangle \t heading  \n ')
+logger.dataLog('AccXangle \t AccYangle \t gyroXangle \t gyroYangle \t gyroZangle \t heading \t temp \t pressure \t altitude \t gps \n ')
 
-accelerometer = berryAccelerometer(logger)
-gyroscope = berryGyroscope(logger)
-magnetometer = berryMagnetometer(logger)
-tempPressureAltitudeSensor = BMP388(logger)
 
-#sensors = [accelerometer, gyroscope, magnetometer, tempPressureAltitudeSensor]
+accelerometer = berryAccelerometer.berryAccelerometer(logger)
+gyroscope = berryGyroscope.berryGyroscope(logger)
+magnetometer = berryMagnetometer.berryMagnetometer(logger)
+tempPressureAltitudeSensor = pressureSensor.pressureSensor(logger)
+gps = berryGPS.berryGPS()
+
+#sensors = [accelerometer, gyroscope, magnetometer, tempPressureAltitudeSensor, gps]
+
+
 sensors = [tempPressureAltitudeSensor, gps]
 def logSensorData():
     for sensor in sensors:
         logger.dataLog(sensor.toString())
     logger.dataLog("\n")
+
  
 def main():
     while True:

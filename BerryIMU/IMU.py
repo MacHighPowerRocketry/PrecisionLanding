@@ -1,5 +1,4 @@
 import smbus
-bus = smbus.SMBus(1)
 from BerryIMU.LSM9DS0 import *
 from BerryIMU.LSM9DS1 import *
 from BerryIMU.LSM6DSL import *
@@ -7,7 +6,10 @@ from BerryIMU.LIS3MDL import *
 import time
 
 
-
+try:
+    bus = smbus.SMBus(1)
+except PermissionError:
+    print("Permission error!")
 
 BerryIMUversion = 99
 
@@ -22,7 +24,7 @@ def detectIMU():
     #BerryIMUv3 uses the LSM6DSL and LIS3MDL
  
     global BerryIMUversion
-
+    
 
     try:
         #Check for BerryIMUv1 (LSM9DS0)

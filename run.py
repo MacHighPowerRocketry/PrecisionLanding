@@ -12,10 +12,10 @@ logger.dataLog('AccXangle \t AccYangle \t gyroXangle \t gyroYangle \t gyroZangle
 accelerometer = berryAccelerometer(logger)
 gyroscope = berryGyroscope(logger)
 magnetometer = berryMagnetometer(logger)
-tempPressureAltitudeSensor = BMP388()
+tempPressureAltitudeSensor = BMP388(logger)
 
-sensors = [accelerometer, gyroscope, magnetometer, tempPressureAltitudeSensor]
-
+#sensors = [accelerometer, gyroscope, magnetometer, tempPressureAltitudeSensor]
+sensors = [tempPressureAltitudeSensor, gps]
 def logSensorData():
     for sensor in sensors:
         logger.dataLog(sensor.toString())

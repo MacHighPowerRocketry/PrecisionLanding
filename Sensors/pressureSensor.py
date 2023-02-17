@@ -12,7 +12,7 @@ class BMP388(sensor):
     """docstring for BMP388"""
 
     def __init__(self, logger, address=I2C_ADD_BMP388):
-        sensor.__init__(logger)
+        sensor.__init__(self,logger)
         self._address = address
         self._bus = smbus.SMBus(0x01)
         self.logger = logger

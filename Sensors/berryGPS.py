@@ -72,18 +72,21 @@ class berryGPS(sensor):
         c = None
         response = []
         try:
-            c = BUS.read_byte(address)
-            if c == 255:
-                return False
-            elif c == 10:
-                self.parseResponse(response)
-            else:
-                response.append(c)
-            self.parseResponse(response)
+            while True: # Newline, or bad char.
+                c = BUS.read_byte(address)
+                if c == 255:
+                    return False
+                elif c == 10:
+                    break
+                else:
+                    response.append(c)
+            return self.parseResponse(response)
         except IOError:
+            self.logger.debugLog("io error")
             self.connectBus()
         except Exception as err:
             self.logger.debugLog(err)
+        return None 
 
     def toString(self):
         return self.readGPS()

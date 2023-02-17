@@ -14,8 +14,8 @@ from datetime import datetime
 
 class rocketLogger:
     def __init__(self):
-	now = datetime.now()
-	dt_string = now.strftime("%m-%d-%Y %H:%M:%S")
+        now = datetime.now()
+        dt_string = now.strftime("%m-%d-%Y %H:%M:%S")
         self.formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
         self.dataLogger = self.setup_logger('data_logger', 'logs/data_' + dt_string + '.log', logging.INFO)
         self.debugLogger = self.setup_logger('debug_logger', 'logs/debug.log')

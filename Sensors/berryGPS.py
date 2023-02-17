@@ -11,7 +11,7 @@ gpsReadInterval = 0.03
 class berryGPS(sensor):
 
     def __init__(self, logger):
-        super().__init__(logger)
+        sensor.__init__(self,logger)
         self.logger = logger
         signal.signal(signal.SIGINT, self.handle_ctrl_c)
         self.connectBus()
@@ -63,7 +63,7 @@ class berryGPS(sensor):
         if(not self.manualChecksum(gpsStr, chkSum)):
             return
             
-        self.gpschars = gpsChars
+        return gpsChars
 
     def handle_ctrl_c(self, signal, frame):
         sys.exit(130)
@@ -86,8 +86,8 @@ class berryGPS(sensor):
             self.logger.debugLog(err)
 
     def toString(self):
-        self.readGPS()
-        return self.gpschars
+        return self.readGPS()
+        
 
 if __name__ == '__main__':
     import rocketLogger

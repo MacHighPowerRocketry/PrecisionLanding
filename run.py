@@ -10,7 +10,7 @@ accelerometer = berryAccelerometer.berryAccelerometer(logger)
 gyroscope = berryGyroscope.berryGyroscope(logger)
 magnetometer = berryMagnetometer.berryMagnetometer(logger)
 tempPressureAltitudeSensor = pressureSensor.pressureSensor(logger)
-gps = berryGPS.berryGPS()
+gps = berryGPS.berryGPS(logger)
 
 #sensors = [accelerometer, gyroscope, magnetometer, tempPressureAltitudeSensor, gps]
 

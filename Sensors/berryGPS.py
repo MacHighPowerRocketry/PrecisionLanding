@@ -41,6 +41,7 @@ class berryGPS(sensor):
                             chkVal ^= ord(ch)
                         if (chkVal == int(chkSum, 16)):
                             self.gpsString = gpsChars
+                            print(gpsChars)
 
     def readGPS(self):
         c = None

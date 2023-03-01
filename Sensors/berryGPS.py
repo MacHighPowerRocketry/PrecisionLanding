@@ -3,7 +3,6 @@ import time
 import smbus
 import signal
 import sys
-BUS = None
 address = 0x42
 gpsReadInterval = 0.03
 
@@ -17,6 +16,7 @@ class berryGPS(sensor):
         self.connectBus()
         self.gpsString = None
         self.connectBus()
+        self.bus = None
 
     def connectBus(self):
         self.bus = smbus.SMBus(1)
@@ -48,7 +48,7 @@ class berryGPS(sensor):
         response = []
         try:
             while True:
-                c = BUS.read_byte(address)
+                c = self.bus.read_byte(address)
                 if c == 255:
                     return False
                 elif c == 10:

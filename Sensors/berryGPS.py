@@ -16,6 +16,7 @@ class berryGPS(sensor):
         signal.signal(signal.SIGINT, self.handle_ctrl_c)
         self.connectBus()
         self.gpsString = None
+        self.connectBus()
 
     def connectBus(self):
         self.bus = smbus.SMBus(1)
@@ -34,6 +35,7 @@ class berryGPS(sensor):
                     gpsChars = ''.join(chr(c) for c in gpsLine)
                     if (gpsChars.find('txbuf') == -1):
                         gpsStr, chkSum = gpsChars.split('*', 2)
+                        gpsComponents = gpsStr.split(',')
                         chkVal = 0
                         for ch in gpsStr[1:]:
                             chkVal ^= ord(ch)

@@ -15,16 +15,18 @@ class berryGPS(sensor):
         signal.signal(signal.SIGINT, self.handle_ctrl_c)
         self.connectBus()
         self.gpsString = None
-        self.connectBus()
         self.bus = None
+        self.connectBus()
 
     def connectBus(self):
         self.bus = smbus.SMBus(1)
+        #print(self.bus)
 
     def handle_ctrl_c(signal, frame):
         sys.exit(130)
 
     def parseResponse(self, gpsLine):
+        #print(gpsLine)
         if (gpsLine.count(36) == 1):
             if len(gpsLine) < 84:
                 CharError = 0
@@ -40,15 +42,15 @@ class berryGPS(sensor):
                         for ch in gpsStr[1:]:
                             chkVal ^= ord(ch)
                         if (chkVal == int(chkSum, 16)):
-                            self.gpsString = gpsChars
-                            print(gpsChars)
+                            self.gpsString += "\n" +  gpsChars
 
     def readGPS(self):
         c = None
         response = []
+        #print(self.bus)
         try:
             while True:
-                c = self.bus.read_byte(address)
+                c = self.bus.read_byte(0x42)
                 if c == 255:
                     return False
                 elif c == 10:
@@ -62,7 +64,9 @@ class berryGPS(sensor):
             self.logger.debugLog(err)
 
     def toString(self):
-        self.readGPS()
+	self.gpsString = ""
+        for i in range(8):
+           self.readGPS()
         return self.gpsString
 
 

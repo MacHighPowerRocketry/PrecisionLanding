@@ -15,7 +15,7 @@ gps = berryGPS.berryGPS(logger)
 #sensors = [accelerometer, gyroscope, magnetometer, tempPressureAltitudeSensor, gps]
 
 
-sensors = [tempPressureAltitudeSensor, gps]
+sensors = [gps]
 def logSensorData():
     for sensor in sensors:
         logger.dataLog(sensor.toString())
@@ -24,7 +24,7 @@ def logSensorData():
  
 def main():
     while True:
-        sleep(0.05) #wait 50 miliseconds between data dump
+        sleep(0.5) #wait 50 miliseconds between data dump
         logSensorData()
 
 if __name__=="__main__":

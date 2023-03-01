@@ -2,6 +2,7 @@ from Sensors.sensor import sensor
 import time
 import smbus
 import signal
+import sys
 BUS = None
 address = 0x42
 gpsReadInterval = 0.03
@@ -18,6 +19,9 @@ class berryGPS(sensor):
 
     def connectBus(self):
         self.bus = smbus.SMBus(1)
+
+    def handle_ctrl_c(signal, frame):
+        sys.exit(130)
 
     def parseResponse(self, gpsLine):
         if (gpsLine.count(36) == 1):

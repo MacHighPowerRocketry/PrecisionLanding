@@ -77,6 +77,9 @@ class berryMagnetometer(sensor):
         mag[2] -= (self.magZmin + self.magZmax) /2
         return mag
 
+    def isHeadingValue(self, value):
+        return self.roundDataValuesToDecimal(self.getSensorData()) == value
+
     def toString(self):
         heading = self.roundDataValuesToDecimal(self.getSensorData())
-        return "Heading %s "%(self.getSensorData())
+        return "Heading %s " % (heading)

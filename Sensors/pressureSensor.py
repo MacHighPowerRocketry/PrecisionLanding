@@ -133,24 +133,15 @@ class pressureSensor(sensor):
 
         return (temperature, pressure, altitude)
     
+    def getSensorData(self):
+        return self.roundDataValuesToDecimal(self.get_temperature_and_pressure_and_altitude())
+
+    def isAltitudeAtLeastValue(self, value):
+        return self.getSensorData()[2] >= value
+
+    def isTemperatureAtLeastValue(self, value):
+        return self.getSensorData()[0] >= value
+    
     def toString(self):
-        temp, pressure, altitude = self.roundDataValuesToDecimal(self.get_temperature_and_pressure_and_altitude())
+        temp, pressure, altitude = self.getSensorData()
         return "temperature %.1f pressure %.2f altitude %.2f "%(temp /100.0, pressure/100.0, altitude/100.0)
-
-if __name__ == '__main__':
-
- import time
- 
- print("BMP388 Test Program ...\n")
- 
- bmp388 = pressureSensor()
- 
- while True:
-  time.sleep(0.5)
-  temperature,pressure,altitude = bmp388.get_temperature_and_pressure_and_altitude()
-  print(' Temperature = %.1f Pressure = %.2f  Altitude =%.2f '%(temperature/100.0,pressure/100.0,altitude/100.0))
-
-
-
-
-

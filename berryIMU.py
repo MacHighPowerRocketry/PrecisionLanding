@@ -20,7 +20,7 @@
 import sys
 import time
 import math
-import IMU
+from BerryIMU import IMU
 import datetime
 import os
 
@@ -390,13 +390,13 @@ while True:
     if 1:                       #Change to '0' to stop  showing the angles from the gyro
         outputString +="\t# GRYX Angle %5.2f  GYRY Angle %5.2f  GYRZ Angle %5.2f # " % (gyroXangle,gyroYangle,gyroZangle)
 
-    if 1:                       #Change to '0' to stop  showing the angles from the complementary filter
+    if 0:                       #Change to '0' to stop  showing the angles from the complementary filter
         outputString +="\t#  CFangleX Angle %5.2f   CFangleY Angle %5.2f  #" % (CFangleX,CFangleY)
 
     if 1:                       #Change to '0' to stop  showing the heading
         outputString +="\t# HEADING %5.2f  tiltCompensatedHeading %5.2f #" % (heading,tiltCompensatedHeading)
 
-    if 1:                       #Change to '0' to stop  showing the angles from the Kalman filter
+    if 0:                       #Change to '0' to stop  showing the angles from the Kalman filter
         outputString +="# kalmanX %5.2f   kalmanY %5.2f #" % (kalmanX,kalmanY)
 
     print(outputString)

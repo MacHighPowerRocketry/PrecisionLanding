@@ -36,7 +36,7 @@ def detectIMU():
         print('')        #need to do something here, so we just print a space
     else:
         if (LSM9DS0_WHO_G_response == 0xd4) and (LSM9DS0_WHO_XM_response == 0x49):
-            print("Found BerryIMUv1 (LSM9DS0)")
+            #print("Found BerryIMUv1 (LSM9DS0)")
             BerryIMUversion = 1
 
 
@@ -51,7 +51,7 @@ def detectIMU():
         print('')        #need to do something here, so we just print a space
     else:
         if (LSM9DS1_WHO_XG_response == 0x68) and (LSM9DS1_WHO_M_response == 0x3d):
-            print("Found BerryIMUv2 (LSM9DS1)")
+            #print("Found BerryIMUv2 (LSM9DS1)")
             BerryIMUversion = 2
 
     try:
@@ -65,7 +65,7 @@ def detectIMU():
         print('')        #need to do something here, so we just print a space
     else:
         if (LSM6DSL_WHO_AM_I_response == 0x6A) and (LIS3MDL_WHO_AM_I_response == 0x3D):
-            print("Found BerryIMUv3 (LSM6DSL and LIS3MDL)")
+            #print("Found BerryIMUv3 (LSM6DSL and LIS3MDL)")
             BerryIMUversion = 3
     time.sleep(1)
 

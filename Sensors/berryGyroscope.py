@@ -76,5 +76,5 @@ class berryGyroscope(sensor):
 
     def toString(self):
         x,y,z = self.roundDataValuesToDecimal(self.getSensorData())
-        return "Gyroscope X Angle, Gyroscope Y Angle, Gyroscope Z Angle %s "%(x,y,z)
+        return "Gyroscope X Angle %s, Gyroscope Y Angle %s, Gyroscope Z Angle %s "%(x,y,z)
 

@@ -13,10 +13,10 @@ M_PI = 3.14159265358979323846
 
 class berryMagnetometer(sensor):
     
-    def __init__(self, logger):
+    def __init__(self, logger, accelerometer):
         self.logger = logger
         sensor.__init__(self, self.logger)
-
+        self.accelerometer = accelerometer
         ################# Compass Calibration values ############
         # Use calibrateBerryIMU.py to get calibration values
         # Calibrating the compass isnt mandatory, however a calibrated
@@ -28,20 +28,21 @@ class berryMagnetometer(sensor):
         self.magYmax =  0
         self.magZmax =  0
 
-    def applySensorReadLogic(self, pitch, roll):
+    def applySensorReadLogic(self, pitch, roll, calibration):
         """
         Sensor logic defined to retrieve and calibrate raw sensor data, to be called once per logic iteration
         """
         rawSensorData = self.getRawSensorData()
         calibratedSensorData = self.applyCalibration(rawSensorData)
         compensatedTiltValues = self.calculateTiltCompensatedValues(calibratedSensorData, pitch, roll)
-        self.heading = self.calculateTiltCompensatedHeading(compensatedTiltValues)
+        self.heading = self.calculateTiltCompensatedHeading(compensatedTiltValues) + calibration
 
+    def compensateHeadingBy(self, value):
+        self.heading = self.heading + value 
         
     def getSensorData(self):
         #returns tilt heading, compensated by calibrated values
-        accelerometer = berryAccelerometer(self.logger)
-        self.applySensorReadLogic(accelerometer.getPitch, accelerometer.getRoll)
+        self.applySensorReadLogic(self.accelerometer.getPitch(), self.accelerometer.getRoll(), -55)
         return [self.heading]
 
 

@@ -8,14 +8,14 @@ logger.dataLog('AccXangle \t AccYangle \t gyroXangle \t gyroYangle \t gyroZangle
 
 accelerometer = berryAccelerometer.berryAccelerometer(logger)
 gyroscope = berryGyroscope.berryGyroscope(logger)
-magnetometer = berryMagnetometer.berryMagnetometer(logger)
+magnetometer = berryMagnetometer.berryMagnetometer(logger, accelerometer)
 tempPressureAltitudeSensor = pressureSensor.pressureSensor(logger)
 gps = berryGPS.berryGPS(logger)
 
 #sensors = [accelerometer, gyroscope, magnetometer, tempPressureAltitudeSensor, gps]
+print("Finished loading sensors")
 
-
-sensors = [gps]
+sensors = [accelerometer,gyroscope,magnetometer]
 def logSensorData():
     for sensor in sensors:
         logger.dataLog(sensor.toString())
